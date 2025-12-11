@@ -1,0 +1,35 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+<h2>Lista de Miembros del Equipo</h2>
+<a href="{% url 'miembro_create' %}" class="btn">Agregar Registro</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for miembro in object_list %}
+        <tr>
+            <td>{{ miembro.pk }}</td>
+            <td>{{ miembro.nombre }}</td>
+            <td>{{ miembro.apellido }}</td>
+            <td>{{ miembro.email }}</td>
+            <td>{{ miembro.telefono }}</td>
+            <td>
+                <a href="{% url 'miembro_update' miembro.pk %}" class="btn btn-edit">Editar</a>
+                <a href="{% url 'miembro_delete' miembro.pk %}" class="btn btn-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

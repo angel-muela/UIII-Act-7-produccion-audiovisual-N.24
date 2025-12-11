@@ -1,0 +1,11 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+  <h2>Confirmar Eliminación</h2>
+  <p>¿Estás seguro de que deseas eliminar el rol de producción "{{ object }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a href="{% url 'rol_list' %}">Cancelar</a>
+  </form>
+{% endblock %}

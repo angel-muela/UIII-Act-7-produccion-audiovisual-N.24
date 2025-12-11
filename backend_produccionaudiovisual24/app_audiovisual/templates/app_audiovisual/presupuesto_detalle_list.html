@@ -1,0 +1,37 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+    <h1>Detalles de Presupuesto</h1>
+    <a href="{% url 'presupuesto_create' %}">Añadir Detalle de Presupuesto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Proyecto</th>
+                <th>Categoría</th>
+                <th>Monto Estimado</th>
+                <th>Monto Real</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for presupuesto in object_list %}
+                <tr>
+                    <td>{{ presupuesto.pk }}</td>
+                    <td>{{ presupuesto.id_proyecto.titulo }}</td>
+                    <td>{{ presupuesto.categoria_gasto }}</td>
+                    <td>{{ presupuesto.monto_estimado }}</td>
+                    <td>{{ presupuesto.monto_real }}</td>
+                    <td>
+                        <a href="{% url 'presupuesto_update' presupuesto.pk %}">Editar</a>
+                        <a href="{% url 'presupuesto_delete' presupuesto.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No hay detalles de presupuesto registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

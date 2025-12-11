@@ -1,0 +1,11 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+  <h2>{% if object %}Editar{% else %}Crear{% endif %} Detalle de Presupuesto</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Guardar</button>
+  </form>
+  <a href="{% url 'presupuesto_list' %}">Cancelar</a>
+{% endblock %}

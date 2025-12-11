@@ -1,0 +1,41 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+<h2>Lista de Material Grabado</h2>
+<a href="{% url 'material_create' %}" class="btn">Agregar Material</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Escena</th>
+            <th>Tipo de Material</th>
+            <th>Duración (s)</th>
+            <th>Formato</th>
+            <th>Fecha de Grabación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for material in object_list %}
+        <tr>
+            <td>{{ material.pk }}</td>
+            <td>{{ material.id_escena.numero_escena }} - {{ material.id_escena.id_proyecto.titulo }}</td>
+            <td>{{ material.tipo_material }}</td>
+            <td>{{ material.duracion_segundos }}</td>
+            <td>{{ material.formato_archivo }}</td>
+            <td>{{ material.fecha_grabacion_real }}</td>
+            <td>
+                <a href="{% url 'material_update' material.pk %}" class="btn btn-edit">Editar</a>
+                <a href="{% url 'material_delete' material.pk %}" class="btn btn-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No hay material grabado registrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

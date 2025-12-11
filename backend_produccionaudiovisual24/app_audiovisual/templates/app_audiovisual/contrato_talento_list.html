@@ -1,0 +1,37 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+    <h1>Contratos</h1>
+    <a href="{% url 'contrato_create' %}">Añadir Contrato</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Proyecto</th>
+                <th>Miembro</th>
+                <th>Fecha Firma</th>
+                <th>Salario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contrato in object_list %}
+                <tr>
+                    <td>{{ contrato.pk }}</td>
+                    <td>{{ contrato.id_proyecto }}</td>
+                    <td>{{ contrato.id_miembro }}</td>
+                    <td>{{ contrato.fecha_firma }}</td>
+                    <td>{{ contrato.salario_acordado }}</td>
+                    <td>
+                        <a href="{% url 'contrato_update' contrato.pk %}">Editar</a>
+                        <a href="{% url 'contrato_delete' contrato.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No hay contratos registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

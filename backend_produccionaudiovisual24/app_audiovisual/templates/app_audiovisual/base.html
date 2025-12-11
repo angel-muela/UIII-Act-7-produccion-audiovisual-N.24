@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producción Audiovisual</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Gestor de Producción Audiovisual</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'proyecto_list' %}">Proyectos</a></li>
+                <li><a href="{% url 'miembro_list' %}">Miembros del Equipo</a></li>
+                <li><a href="{% url 'rol_list' %}">Roles de Producción</a></li>
+                <li><a href="{% url 'escena_list' %}">Escenas</a></li>
+                <li><a href="{% url 'material_list' %}">Material de Rodaje</a></li>
+                <li><a href="{% url 'presupuesto_list' %}">Presupuestos</a></li>
+                <li><a href="{% url 'contrato_list' %}">Contratos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Productora Audiovisual</p>
+    </footer>
+</body>
+</html>

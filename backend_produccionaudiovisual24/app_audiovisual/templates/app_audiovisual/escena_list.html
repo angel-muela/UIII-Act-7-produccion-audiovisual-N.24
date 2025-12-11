@@ -1,0 +1,35 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+<h2>Lista de Escenas</h2>
+<a href="{% url 'escena_create' %}" class="btn">Agregar Registro</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Proyecto</th>
+            <th>Número de Escena</th>
+            <th>Descripción</th>
+            <th>Lugar</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for escena in object_list %}
+        <tr>
+            <td>{{ escena.pk }}</td>
+            <td>{{ escena.id_proyecto.titulo }}</td>
+            <td>{{ escena.numero_escena }}</td>
+            <td>{{ escena.descripcion_escena }}</td>
+            <td>{{ escena.localizacion }}</td>
+            <td>
+                <a href="{% url 'escena_update' escena.pk %}" class="btn btn-edit">Editar</a>
+                <a href="{% url 'escena_delete' escena.pk %}" class="btn btn-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

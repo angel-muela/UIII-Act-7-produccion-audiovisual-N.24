@@ -1,0 +1,37 @@
+{% extends 'app_audiovisual/base.html' %}
+
+{% block content %}
+<h2>Lista de Proyectos Audiovisuales</h2>
+<a href="{% url 'proyecto_create' %}" class="btn">Agregar Registro</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proyecto in object_list %}
+        <tr>
+            <td>{{ proyecto.pk }}</td>
+            <td>{{ proyecto.titulo }}</td>
+            <td>{{ proyecto.tipo_produccion }}</td>
+            <td>{{ proyecto.fecha_inicio }}</td>
+            <td>{{ proyecto.fecha_fin_estimada }}</td>
+            <td>{{ proyecto.estado_proyecto }}</td>
+            <td>
+                <a href="{% url 'proyecto_update' proyecto.pk %}" class="btn btn-edit">Editar</a>
+                <a href="{% url 'proyecto_delete' proyecto.pk %}" class="btn btn-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
